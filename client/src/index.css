@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+
+html { -webkit-tap-highlight-color: transparent; }
+body {
+  @apply bg-ink font-body text-zinc-200 antialiased;
+  background-image:
+    radial-gradient(900px 520px at 88% -8%, rgba(255, 70, 30, 0.16), transparent 60%),
+    radial-gradient(700px 420px at -6% 8%, rgba(255, 140, 30, 0.09), transparent 60%);
+  background-attachment: fixed;
+}
+::selection { background: rgba(255, 122, 26, 0.35); }
+* { scrollbar-width: thin; scrollbar-color: rgba(255, 122, 26, 0.35) transparent; }
+
+/* Lenis (smooth scroll, landing page only) */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+@layer components {
+  .glass { @apply rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-xl; }
+  .glow-hover { @apply transition duration-300; }
+  .glow-hover:hover {
+    @apply border-neon-orange/40;
+    box-shadow: 0 0 0 1px rgba(255, 122, 26, 0.22), 0 14px 44px -14px rgba(255, 70, 30, 0.5);
+  }
+  .text-gradient { @apply bg-gradient-to-r from-neon-amber via-neon-orange to-neon-red bg-clip-text text-transparent; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon-orange/60 disabled:cursor-not-allowed disabled:opacity-50; }
+  .btn-primary { @apply btn bg-gradient-to-r from-neon-orange to-neon-red text-white shadow-neon hover:brightness-110 active:scale-[0.98]; }
+  .btn-outline { @apply btn border border-white/15 bg-white/[0.03] text-zinc-100 hover:border-neon-orange/50 hover:bg-white/[0.07]; }
+  .btn-ghost { @apply btn text-zinc-300 hover:bg-white/[0.06] hover:text-white; }
+  .btn-danger { @apply btn border border-red-500/30 bg-red-500/10 text-red-300 hover:bg-red-500/20; }
+  .input { @apply w-full rounded-xl border border-white/10 bg-black/40 px-3.5 py-2.5 text-sm text-zinc-100 outline-none transition placeholder:text-zinc-500 focus:border-neon-orange/60 focus:ring-2 focus:ring-neon-orange/20; }
+}
