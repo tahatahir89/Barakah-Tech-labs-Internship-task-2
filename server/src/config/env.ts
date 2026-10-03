@@ -28,4 +28,7 @@ export const env = parsed.data;
 // Vercel sets VERCEL=1 on every deployment (production and preview), and those are always served over HTTPS,
 // so treat them as production even if NODE_ENV is not set there. Don't rely on NODE_ENV alone.
 export const isProd = env.NODE_ENV === 'production' || process.env.VERCEL === '1';
-export const clientOrigins = env.CLIENT_URL.split(',').map((s) => s.trim().replace(/\/$/, ''));
+// Tolerate copy/paste slips in the Vercel dashboard: spaces, surrounding quotes, trailing slashes, capitals.
+export const clientOrigins = env.CLIENT_URL.split(',')
+  .map((s) => s.trim().replace(/^["']|["']$/g, '').replace(/\/+$/, '').toLowerCase())
+  .filter(Boolean);

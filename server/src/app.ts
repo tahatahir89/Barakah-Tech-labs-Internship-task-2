@@ -18,7 +18,9 @@ app.use(helmet());
 app.use(
   cors({
     origin: (origin, cb) =>
-      !origin || clientOrigins.includes(origin) ? cb(null, true) : cb(new AppError(403, 'Origin not allowed.')),
+      !origin || clientOrigins.includes(origin.toLowerCase())
+        ? cb(null, true)
+        : cb(new AppError(403, `Request origin not allowed: ${origin.slice(0, 120)}. Set CLIENT_URL on the API to this exact address.`)),
     credentials: true,
   }),
 );
