@@ -1,6 +1,9 @@
 {
   "rewrites": [
-    { "source": "/api/:path*", "destination": "https://YOUR-API-PROJECT.vercel.app/api/:path*" },
+    {
+      "source": "/api/:path*",
+      "destination": "https://barakah-tech-labs-internship-task-2.vercel.app/api/:path*"
+    },
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
 }
